@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSVP-Kenduri — Preview</title>
+<style>
+  :root {
+    --cream: #FFF8F0; --teal: #0E4D45; --gold: #C9A227; --coral: #E76F51;
+    --ink: #1F2937; --muted: #6B7280;
+  }
+  * { box-sizing: border-box; margin: 0; font-family: -apple-system, "Segoe UI", Roboto, sans-serif; }
+  body { background: #E5E7EB; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .tabs button { padding: 10px 18px; border: none; border-radius: 10px; background: white; cursor: pointer; font-weight: 600; }
+  .tabs button.active { background: var(--teal); color: white; }
+  .phone { width: 390px; min-height: 780px; background: var(--cream); border-radius: 32px;
+           box-shadow: 0 20px 50px rgba(0,0,0,.25); overflow: hidden; position: relative; }
+  .page { display: none; padding: 24px 20px 40px; }
+  .page.active { display: block; }
+  h1 { color: var(--teal); font-size: 22px; }
+  .ornament { text-align: center; color: var(--gold); font-size: 28px; letter-spacing: 8px; margin: 8px 0; }
+  .subtitle { color: var(--muted); font-size: 13px; text-align: center; }
+  .card { background: white; border-radius: 16px; padding: 16px; margin-top: 14px;
+          box-shadow: 0 2px 8px rgba(14,77,69,.08); }
+  label { display: block; font-size: 13px; font-weight: 600; color: var(--teal); margin: 12px 0 6px; }
+  input, select, textarea { width: 100%; padding: 12px; border: 1px solid #E5E7EB; border-radius: 10px;
+          font-size: 15px; background: #FAFAFA; }
+  .btn { display: block; width: 100%; padding: 14px; border: none; border-radius: 12px;
+         background: var(--teal); color: white; font-size: 16px; font-weight: 700; margin-top: 16px; cursor: pointer; }
+  .btn.gold { background: var(--gold); color: #3D2E00; }
+  .btn.ghost { background: white; color: var(--teal); border: 1.5px solid var(--teal); }
+  .btn.danger { background: var(--coral); }
+  .stat-row { display: flex; gap: 10px; margin-top: 14px; }
+  .stat { flex: 1; background: white; border-radius: 14px; padding: 14px 8px; text-align: center;
+          box-shadow: 0 2px 8px rgba(14,77,69,.08); }
+  .stat b { font-size: 22px; color: var(--teal); display: block; }
+  .stat.hl { background: var(--gold); } .stat.hl b { color: #3D2E00; }
+  .stat span { font-size: 11px; color: var(--muted); }
+  .row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0;
+         border-bottom: 1px solid #F3F4F6; font-size: 14px; }
+  .pill { padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 700; }
+  .yes { background: #DCFCE7; color: #15803D; } .no { background: #FEE2E2; color: #B91C1C; }
+  .maybe { background: #FEF3C7; color: #B45309; }
+  .lang { position: absolute; top: 14px; right: 14px; font-size: 12px; background: white;
+          padding: 6px 12px; border-radius: 99px; color: var(--teal); font-weight: 600; }
+  .meta { color: var(--muted); font-size: 14px; line-height: 1.7; margin-top: 10px; }
+</style>
+</head>
+<body>
+  <div class="tabs">
+    <button class="active" onclick="show(0,this)">🏠 Landing</button>
+    <button onclick="show(1,this)">📝 Cipta</button>
+    <button onclick="show(2,this)">💌 Jemputan</button>
+    <button onclick="show(3,this)">📊 Dashboard</button>
+  </div>
+
+  <div class="phone">
+    <div class="lang">🇲🇾 BM | EN</div>
+
+    <!-- 0: Landing -->
+    <div class="page active" style="padding-top:80px">
+      <div class="ornament">✦ ❀ ✦</div>
+      <h1 style="text-align:center;font-size:26px">RSVP-Kenduri</h1>
+      <p class="subtitle">Jemput. Rekod. Kenduri.</p>
+      <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:10px">
+        Kawal senarai tetamu majlis anda tanpa spreadsheet.</p>
+      <button class="btn gold">Cipta Acara Baru →</button>
+      <div class="card" style="font-size:13px;color:var(--muted)">
+        ✅ Tanpa akaun untuk tetamu &nbsp;·&nbsp; 📱 Share WhatsApp<br>
+        👨‍👩‍👧‍👦 RSVP keluarga &nbsp;·&nbsp; ⬇ Eksport CSV
+      </div>
+    </div>
+
+    <!-- 1: Create -->
+    <div class="page" style="padding-top:64px">
+      <h1>Cipta Acara</h1>
+      <div class="card">
+        <label>Tajuk Acara *</label><input value="Walimatul Urus Aiman & Sofia">
+        <label>Jenis Acara</label><select><option>Kenduri Kahwin</option><option>Doa Selamat</option><option>Aqiqah</option><option>Cukur Jambul</option></select>
+        <label>Nama Tuah *</label><input value="Aiman & Keluarga">
+        <label>Tarikh & Masa *</label>
+        <input type="date" value="2025-07-12"><input type="time" value="12:30" style="margin-top:6px">
+        <label>Tempat *</label><input value="Dewan Seri Melati, Kajang">
+        <label>Kod Rahsia (min 6) *</label><input type="password" value="kenduri123">
+        <button class="btn">Cipta Acara →</button>
+      </div>
+    </div>
+
+    <!-- 2: Invitation -->
+    <div class="page" style="padding-top:70px">
+      <div class="ornament">✦ ❀ ✦</div>
+      <h1 style="text-align:center;font-size:19px">WALIMATUL URUS<br>Aiman & Sofia</h1>
+      <div class="meta" style="text-align:center">
+        🗓 12 Julai 2025 · Pukul 12.30 (tengah hari)<br>
+        📍 Dewan Seri Melati, Kajang, Selangor
+      </div>
+      <p class="subtitle" style="margin-top:12px">"Ya, saya akan hadir!"</p>
+      <div class="card">
+        <label>Nama Anda *</label><input placeholder="Rosnah Binti Omar">
+        <label>No. Telefon *</label><input placeholder="012-345 6789">
+        <label>Bilangan Hadir</label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn ghost" style="width:52px;margin:0">−</button>
+          <input value="4" style="text-align:center;font-weight:700">
+          <button class="btn ghost" style="width:52px;margin:0">+</button>
+        </div>
+        <button class="btn">Hantar RSVP →</button>
+      </div>
+    </div>
+
+    <!-- 3: Dashboard -->
+    <div class="page" style="padding-top:64px">
+      <h1>Aiman & Sofia</h1>
+      <div class="stat-row">
+        <div class="stat hl"><b>86</b><span>pax Datang ✅</span></div>
+        <div class="stat"><b>12</b><span>Belum pasti ⏳</span></div>
+        <div class="stat"><b>4</b><span>Tolak ❌</span></div>
+      </div>
+      <button class="btn gold" style="margin-top:14px">📱 Kongsi WhatsApp</button>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="btn ghost" style="font-size:13px">⬇ CSV</button>
+        <button class="btn ghost" style="font-size:13px">🔲 QR</button>
+        <button class="btn ghost" style="font-size:13px">✏ Edit</button>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <input placeholder="🔍 Cari tetamu...">
+        <div class="row"><span>Rosnah<br><small>012-345 6789</small></span><span>4 <span class="pill yes">Datang</span> ✕</span></div>
+        <div class="row"><span>Kamal<br><small>013-999 8877</small></span><span>2 <span class="pill maybe">Belum pasti</span> ✕</span></div>
+        <div class="row"><span>Farid<br><small>011-222 3344</small></span><span>6 <span class="pill no">Tolak</span> ✕</span></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  function show(i, btn) {
+    document.querySelectorAll('.page').forEach((p, j) => p.classList.toggle('active', j === i));
+    document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>
